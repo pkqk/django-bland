@@ -1,6 +1,6 @@
 import os
 import time
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponseNotFound
 from django.shortcuts import render_to_response
 from django.utils.http import http_date
 from .models import Resource, NotFound
