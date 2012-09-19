@@ -1,8 +1,9 @@
-<!doctype html>
+{% load staticfiles %}<!doctype html>
 <html>
   <head>
     <title>{{ page.title }}</title>
     <meta charset='utf-8'>
+    <link rel='stylesheet' href='{% static "bland/style.css" %}'>
   </head>
   <body>
     {% if page.heading %}
