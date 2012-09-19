@@ -1,6 +1,6 @@
 The most basic possible cms for a django app
 
-add bland.root('/path/to/your/txt/files') as a view
+add bland.views.root('/path/to/your/txt/files') as a view
 
 .txt files will be rendered using markdown in such a way that
 these URLs will work based on this file structure
