@@ -14,4 +14,9 @@ setup(name="django-bland",
     package_data={
         "bland": ['templates/bland/*.html', 'static/bland/*.css']
     },
+    requires=[
+        'Django',
+        'pyyaml',
+        'markdown'
+    ]
 )
