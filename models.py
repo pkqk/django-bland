@@ -12,6 +12,11 @@ class NotFound(Exception):
 
 
 class Resource(object):
+    """
+    An object to represent a resource at a specific url
+
+    maps to a file on disk and renders it from markdown to html
+    """
     renderer = markdown.Markdown()
 
     @classmethod
@@ -35,6 +40,9 @@ class Resource(object):
             self.source = data
 
     def body(self):
+        """
+        Convert the source of the page from markdown to html
+        """
         return mark_safe(self.renderer.convert(self.source))
 
     def __getitem__(self, key):
@@ -44,6 +52,10 @@ class Resource(object):
         return self.meta.get('title') or self.meta.get('heading')
 
     def date(self):
+        """
+        If the page data contains a date use that otherwise use
+        the mtime of the file
+        """
         if 'date' in self.meta:
             return self.meta['date']
         else:
