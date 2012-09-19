@@ -16,15 +16,15 @@ class Resource(object):
     def locate(cls, path):
         if not path or path.endswith('/'):
             path += 'index'
-        print "test path: %s" % (path+ '.txt')
-        if os.path.exists(path + '.txt'):
-            return cls(path, 'txt')
+        path += '.txt'
+        if os.path.exists(path):
+            return cls(path)
         else:
-            raise NotFound(path + '.txt')
+            raise NotFound(path)
 
-    def __init__(self, path, processor):
-        self.path = '.'.join([path, processor])
-        data = codecs.open(self.path, encoding='utf-8').read()
+    def __init__(self, path):
+        self.path = path
+        data = codecs.open(path, encoding='utf-8').read()
         try:
             meta, self.source = data.split('---\n', 1)
             self.meta = yaml.load(meta)
