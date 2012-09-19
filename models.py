@@ -40,10 +40,7 @@ class Resource(object):
         return self.meta[key]
 
     def title(self):
-        try:
-            return self['title']
-        except KeyError:
-            return self['heading']
+        return self.meta.get('title') or self.meta.get('heading')
 
     def date(self):
         if 'date' in self.meta:
