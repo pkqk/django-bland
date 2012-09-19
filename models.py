@@ -5,13 +5,14 @@ from django.utils.safestring import mark_safe
 import markdown
 import yaml
 
-renderer = markdown.Markdown()
 
 class NotFound(Exception):
     def __init__(self, message):
         super(NotFound, self).__init__("Missing: %s" % message)
 
 class Resource(object):
+    renderer = markdown.Markdown()
+
     @classmethod
     def locate(cls, path):
         if not path or path.endswith('/'):
@@ -33,7 +34,7 @@ class Resource(object):
             self.source = data
 
     def body(self):
-        return mark_safe(renderer.convert(self.source))
+        return mark_safe(self.renderer.convert(self.source))
 
     def __getitem__(self, key):
         return self.meta[key]
