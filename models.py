@@ -10,6 +10,7 @@ class NotFound(Exception):
     def __init__(self, message):
         super(NotFound, self).__init__("Missing: %s" % message)
 
+
 class Resource(object):
     renderer = markdown.Markdown()
 
@@ -46,5 +47,5 @@ class Resource(object):
         if 'date' in self.meta:
             return self.meta['date']
         else:
-            return datetime.datetime.fromtimestamp(os.stat(self.path).st_mtime)
-
+            return datetime.datetime.fromtimestamp(
+                os.stat(self.path).st_mtime)
