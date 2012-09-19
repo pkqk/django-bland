@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{ page.title }}</title>
+    <meta charset='utf-8'>
+  </head>
+  <body>
+    {% if page.heading %}
+    <header>
+      <h1>{{ page.heading }}</h1>
+      {% if page.subheading %}
+      <h2>{{ page.subheading }}</h2>
+      {% endif %}
+    </header>
+    {% endif %}
+    <article role='main'>
+    {{ page.body }}
+    </article>
+  </body>
+</html>

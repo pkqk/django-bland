@@ -1,5 +1,6 @@
 import os
 from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import render_to_response
 from .models import Resource, NotFound
 
 
@@ -13,5 +14,5 @@ def root(cms_root):
             page = Resource.locate(os.path.join(cms_root, path))
         except NotFound as e:
             return HttpResponseNotFound(str(e))
-        return HttpResponse(page.body())
+        return render_to_response('bland/base.html', {'page': page})
     return view
