@@ -46,5 +46,5 @@ class Resource(object):
         if 'date' in self.meta:
             return self.meta['date']
         else:
-            return datetime.date.fromtimestamp(os.stat(self.path).st_mtime)
+            return datetime.datetime.fromtimestamp(os.stat(self.path).st_mtime)
 

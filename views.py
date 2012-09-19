@@ -1,6 +1,8 @@
 import os
+import time
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render_to_response
+from django.utils.http import http_date
 from .models import Resource, NotFound
 
 
@@ -14,5 +16,12 @@ def root(cms_root):
             page = Resource.locate(os.path.join(cms_root, path))
         except NotFound as e:
             return HttpResponseNotFound(str(e))
-        return render_to_response('bland/resource.html', {'page': page})
+        response = render_to_response('bland/resource.html',
+            {'page': page})
+        response['Last-Modified'] = _http_date(page.date())
+        return response
     return view
+
+def _http_date(datetime):
+    "the ludacris amount of work required in python date/time libs"
+    return http_date(time.mktime(datetime.timetuple()))
