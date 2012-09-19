@@ -24,5 +24,7 @@ def root(cms_root):
 
 
 def _http_date(datetime):
-    "the ludacris amount of work required in python date/time libs"
+    """
+    the ludicrous amount of work required in python date/time libs
+    """
     return http_date(time.mktime(datetime.timetuple()))
