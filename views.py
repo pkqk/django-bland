@@ -14,5 +14,5 @@ def root(cms_root):
             page = Resource.locate(os.path.join(cms_root, path))
         except NotFound as e:
             return HttpResponseNotFound(str(e))
-        return render_to_response('bland/base.html', {'page': page})
+        return render_to_response('bland/resource.html', {'page': page})
     return view

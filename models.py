@@ -39,6 +39,12 @@ class Resource(object):
     def __getitem__(self, key):
         return self.meta[key]
 
+    def title(self):
+        try:
+            return self['title']
+        except KeyError:
+            return self['heading']
+
     def date(self):
         if 'date' in self.meta:
             return self.meta['date']
