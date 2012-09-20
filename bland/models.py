@@ -10,6 +10,28 @@ class NotFound(Exception):
     def __init__(self, message):
         super(NotFound, self).__init__("Missing: %s" % message)
 
+    def resource(self, root):
+        try:
+            return root.lookup('not-found')
+        except NotFound:
+            pass
+
+
+class Root(object):
+
+    def __init__(self, basedir):
+        self.base = basedir
+
+    def lookup(self, path):
+        path = os.path.join(self.base, path)
+        if not path or path.endswith('/'):
+            path += 'index'
+        path += '.txt'
+        if os.path.exists(path):
+            return Resource(path)
+        else:
+            raise NotFound(path)
+
 
 class Resource(object):
     """
@@ -17,17 +39,8 @@ class Resource(object):
 
     maps to a file on disk and renders it from markdown to html
     """
-    renderer = markdown.Markdown()
 
-    @classmethod
-    def locate(cls, path):
-        if not path or path.endswith('/'):
-            path += 'index'
-        path += '.txt'
-        if os.path.exists(path):
-            return cls(path)
-        else:
-            raise NotFound(path)
+    renderer = markdown.Markdown()
 
     def __init__(self, path):
         self.path = path
