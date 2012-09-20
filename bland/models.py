@@ -2,6 +2,7 @@ import os
 import codecs
 import datetime
 from django.utils.safestring import mark_safe
+from django.http import Http404
 import markdown
 import yaml
 
@@ -14,7 +15,7 @@ class NotFound(Exception):
         try:
             return root.lookup('not-found')
         except NotFound:
-            pass
+            raise Http404
 
 
 class Root(object):
