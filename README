@@ -9,3 +9,6 @@ these URLs will work based on this file structure
 /about -> about.html
 /sub/ -> sub/index.txt
 /sub/info -> sub/info.txt
+
+if not-found.txt is present then it will be rendered for 404s
+otherwise the standard django 404 will be rendered
